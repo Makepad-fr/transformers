@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Select Format</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main>
+    <h1>Convert: {{.OriginalName}}</h1>
+    <p>Choose a target format below:</p>
+
+    <form action="/convert" method="post">
+      <!-- hidden fields to preserve upload state -->
+      <input type="hidden" name="filename" value="{{.Filename}}">
+      <input type="hidden" name="original" value="{{.OriginalName}}">
+
+      <div class="formats">
+        {{range .Formats}}
+          <label>
+            <input type="radio" name="format" value="{{.}}" required>
+            {{.}}
+          </label><br>
+        {{end}}
+      </div>
+
+      <button type="submit">Convert</button>
+    </form>
+  </main>
+</body>
+</html>
